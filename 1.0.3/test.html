@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ko implement</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <style>
+    	.input-red {
+    		
+    	}
+    </style>
+</head>
+<body>
+	
+    <div id="test1" data-bind="template:peopleTemplate"></div>
+    <div>
+	    You've clicked <span id="span1" data-bind="text:numberOfClicks"></span> times
+	    <button id="button1" data-bind="click:incrementClickCounter">Click me</button>
+	    
+	</div>
+	<input id="ck1" type='checkbox' data-bind="enable:hasCellphone" />
+	<input id="ck2" type='checkbox' data-bind="visible:hasCellphone" />
+	<input id="ck3" data-bind="css:{input-red:hasCellphone}" />
+	<script src="namespace.js"></script>
+	<script src="utils.js"></script>
+	<script src="subscribable/subscrible.js" id="xxx"><h1>pppp</h1></script>
+	<script src="subscribable/observable.js"></script>
+	<script src="subscribable/dependecyDetection.js"></script>
+	<script src="subscribable/dependentObservable.js"></script>
+	<script src="subscribable/observableArray.js"></script>
+	<script src="bindings/defaultBinding.js"></script>
+	<script src="bindings/bindingAttributeSyntax.js"></script>
+	<script>
+		var viewModel = {
+	        numberOfClicks : ko.observable(0),
+	        incrementClickCounter : function() {
+	            var previousCount = this.numberOfClicks();
+	            this.numberOfClicks(previousCount + 1);
+	        },
+	        hasCellphone : ko.observable(false)
+	    };
+
+        ko.applyBindingsToNode(viewModel, document.getElementById('span1'));
+        ko.applyBindingsToNode(viewModel, document.getElementById('button1'));
+        ko.applyBindingsToNode(viewModel, document.getElementById('ck1'));
+        ko.applyBindingsToNode(viewModel, document.getElementById('ck2'));
+        ko.applyBindingsToNode(viewModel, document.getElementById('ck3'));
+	</script>
+
+</body>
+</html>
